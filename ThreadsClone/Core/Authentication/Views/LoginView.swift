@@ -20,18 +20,11 @@ struct LoginView: View {
                     .scaledToFit()
                     .frame(width: 120, height: 120)
                 VStack {
-                    TextField("Enter your Email...", text: $email)
-                        .font(.subheadline)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
-                        .padding(.horizontal, 24)
+                    TextField("Enter your email...", text: $email)
+                        .autocapitalization(.none)
+                        .modifier(ThreadsTextFieldModifier())
                     SecureField("Enter your password...", text: $password)
-                        .font(.subheadline)
-                        .padding(12)
-                        .background(Color(.systemGray6))
-                        .cornerRadius(10)
-                        .padding(.horizontal, 24)
+                        .modifier(ThreadsTextFieldModifier())
                 }
                 
                 NavigationLink {
