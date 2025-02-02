@@ -11,10 +11,16 @@ struct ProfileView: View {
     @StateObject var viewModel = ProfileViewModel()
     @State private var selectedFilter: ProfileThreadFilter = .threads
     @Namespace var animation
+    
     private var filterBarWidth: CGFloat {
         let count = CGFloat(ProfileThreadFilter.allCases.count)
         return UIScreen.main.bounds.width / count - 20
     }
+    
+    private var currentUser: User? {
+        return viewModel.currentUser
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
@@ -24,14 +30,17 @@ struct ProfileView: View {
                         VStack(alignment: .leading, spacing: 12) {
                             //full name and username
                             VStack(alignment: .leading, spacing: 4) {
-                                Text("Charles Leclerc")
+                                Text(currentUser?.fullName ?? "")
                                     .font(.title2)
                                     .fontWeight(.semibold)
-                                Text("charles_leclerc")
+                                Text(currentUser?.username ?? "")
                                     .font(.subheadline)
                             }
-                            Text("Formula 1 Driver for Scuderia Ferrari")
-                                .font(.footnote)
+                            
+                            if let bio = currentUser?.bio {
+                                Text(bio)
+                                    .font(.footnote)
+                            }
                             
                             Text("2 followers")
                                 .font(.caption)
