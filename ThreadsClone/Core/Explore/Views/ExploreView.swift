@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct ExploreView: View {
+    @StateObject var viewModel = ExploreViewModel()
     @State private var searchText = ""
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 LazyVStack {
-                    ForEach(0...10, id: \.self) { user in
+                    ForEach(viewModel.users) { user in
                         VStack {
-                            UserCell()
+                            UserCell(user: user)
                         }
-                        Divider()
                     }
                     .padding(.vertical, 4)
                 }
