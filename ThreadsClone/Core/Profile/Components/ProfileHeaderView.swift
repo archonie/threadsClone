@@ -35,7 +35,7 @@ struct ProfileHeaderView: View {
                     .foregroundStyle(.gray)
             }
             Spacer()
-            CircularProfileImageView(imageName: "max-verstappen")
+            CircularProfileImageView(user: user, size: .medium)
         }
     }
 }
